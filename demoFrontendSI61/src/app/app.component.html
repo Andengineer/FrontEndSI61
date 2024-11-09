@@ -1,0 +1,69 @@
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()">
+  <div  class="left-menu">
+
+    <button mat-button [routerLink]="['/homes']" style="color: white">
+      <mat-icon>home</mat-icon>Home
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuAmbientes" style="color: white" *ngIf="isDeveloper()">
+      <mat-icon>business</mat-icon>Ambiente
+    </button>
+
+    <button
+      mat-button
+      [matMenuTriggerFor]="menuDispositivos"
+      style="color: white" *ngIf="isTester()"
+    >
+      <mat-icon>devices</mat-icon>Dispositivos
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon> insert_drive_file</mat-icon>
+      Reportes
+    </button>
+
+  </div>
+  <div class="right-menu">
+
+    <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
+      <mat-icon>person</mat-icon>Usuario
+    </button>
+
+  </div>
+</mat-toolbar>
+
+<mat-menu #menuAmbientes="matMenu">
+
+  <button mat-menu-item routerLink="/ambientes"><mat-icon>playlist_add_check</mat-icon>
+    Listar</button>
+  <button mat-menu-item routerLink="/ambientes/nuevo"><mat-icon>playlist_add</mat-icon>Registrar</button>
+
+</mat-menu>
+
+<mat-menu #menuDispositivos="matMenu">
+  <button mat-menu-item routerLink="/dispositivos"><mat-icon>playlist_add_check</mat-icon>
+    Listar</button>
+  <button mat-menu-item routerLink="/dispositivos/nuevo"><mat-icon>playlist_add</mat-icon>Registrar</button>
+</mat-menu>
+
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes">
+    <mat-icon> pie_chart</mat-icon>Cantidad
+  </button>
+  <button mat-menu-item routerLink="/reportes/reportesumas">
+    <mat-icon> bar_chart</mat-icon>Monto
+  </button>
+</mat-menu>
+
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="cerrar()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+  <button mat-menu-item>
+    Rol:
+    <span>{{ role }}</span>
+  </button>
+</mat-menu>
+
+<router-outlet></router-outlet>
